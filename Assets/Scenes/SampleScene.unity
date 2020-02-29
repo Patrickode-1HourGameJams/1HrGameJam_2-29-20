@@ -147,7 +147,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2028897}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -604,6 +604,7 @@ MonoBehaviour:
   coll: {fileID: 1262944906}
   maxVelocity: 5
   accelSpeed: 1
+  verticalAccelSpeed: 1
 --- !u!54 &1262944911
 Rigidbody:
   m_ObjectHideFlags: 0

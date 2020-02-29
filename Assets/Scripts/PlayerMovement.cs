@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float maxVelocity = 5;
     public float accelSpeed = 1;
+    public float verticalAccelSpeed = 0.5f;
 
     void Update()
     {
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
             moveDir += Vector3.right;
         }
 
+        //Make the player ascend or descend according to the keyboard state
         AscendDescend();
 
         //Now apply that move direction to actual movement.
@@ -42,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
         {
             ApplyMoveInput(moveDir);
         }
+
+        //Make sure the velocity never exceeds the max.
+        rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
+
+        rb.angularVelocity = rb.velocity;
     }
 
     /// <summary>
@@ -57,15 +64,19 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector3(newVel.x, rb.velocity.y, newVel.z);
     }
 
+    /// <summary>
+    /// Depending on whether space is held, make the player ascend or descend.
+    /// </summary>
     private void AscendDescend()
     {
+        Vector3 direction = Vector3.down;
         if (Input.GetKey(KeyCode.Space))
         {
-            //Move up
+            //If player is holding space, make the player move up instead of down
+            direction = Vector3.up;
         }
-        else
-        {
-            //Move down
-        }
+
+        //Now with that direction, multiply it by accel speed and make sure it's within max velocity
+        rb.velocity += direction * accelSpeed;
     }
 }
