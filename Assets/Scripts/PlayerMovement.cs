@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
             moveDir += Vector3.right;
         }
 
+        AscendDescend();
+
         //Now apply that move direction to actual movement.
         if (moveDir != Vector3.zero)
         {
@@ -53,5 +55,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velSubY = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         Vector3 newVel = Vector3.ClampMagnitude(velSubY + forceDir * accelSpeed, maxVelocity);
         rb.velocity = new Vector3(newVel.x, rb.velocity.y, newVel.z);
+    }
+
+    private void AscendDescend()
+    {
+        if (Input.GetKey(KeyCode.Space))
+        {
+            //Move up
+        }
+        else
+        {
+            //Move down
+        }
     }
 }
