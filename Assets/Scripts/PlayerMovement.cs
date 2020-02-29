@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour
         //Make sure the velocity never exceeds the max.
         rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxVelocity);
 
-        rb.angularVelocity = rb.velocity;
+        rb.angularVelocity = -Vector3.Cross(rb.velocity, Vector3.up);
     }
 
     /// <summary>
